@@ -38,6 +38,12 @@ public class PuntosController {
         return ResponseEntity.ok(historial);
     }
 
+    @PutMapping("/{id}")
+    public ResponseEntity<Puntos> actualizarPuntos(@PathVariable Long id, @RequestBody Puntos puntosDetails) {
+        return puntosService.update(id, puntosDetails)
+                .map(ResponseEntity::ok) // Si se actualizó, devuelve 200 OK con el objeto
+                .orElse(ResponseEntity.notFound().build()); // Si no se encontró, devuelve 404 Not Found
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Puntos> getPuntosPorId(@PathVariable Long id) {

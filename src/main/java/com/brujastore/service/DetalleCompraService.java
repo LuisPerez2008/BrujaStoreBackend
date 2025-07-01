@@ -15,11 +15,9 @@ public class DetalleCompraService {
     @Autowired
     private DetalleCompraRepository detallesCompraRepository;
 
-    // --- MÉTODOS DE ESCRITURA (CREATE, UPDATE, DELETE) ---
 
     @Transactional
     public DetalleCompra save(DetalleCompra detallesCompra) {
-        // Simplemente guarda el objeto tal como viene.
         return detallesCompraRepository.save(detallesCompra);
     }
 
@@ -31,7 +29,6 @@ public class DetalleCompraService {
                     detalleExistente.setProducto(detalleDetails.getProducto());
                     detalleExistente.setCantidad(detalleDetails.getCantidad());
                     detalleExistente.setPrecioParcial(detalleDetails.getPrecioParcial());
-                    // El ID de la compra no debería cambiar
                     return detallesCompraRepository.save(detalleExistente);
                 });
     }

@@ -15,6 +15,9 @@ public class CompraService {
     @Autowired
     private CompraRepository compraRepository;
 
+
+    // En CompraService.java
+
     @Transactional
     public Compra save(Compra compra) {
         // Simplemente guarda el objeto Compra que viene del controlador.

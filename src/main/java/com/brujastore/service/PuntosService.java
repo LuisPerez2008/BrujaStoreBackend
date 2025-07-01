@@ -29,4 +29,16 @@ public class PuntosService {
     public Optional<Puntos> findById(Long id) {
         return puntosRepository.findById(id);
     }
+
+    @Transactional
+    public Optional<Puntos> update(Long id, Puntos puntosDetails) {
+        // Busca el registro de puntos por su ID
+        return puntosRepository.findById(id)
+                .map(puntosExistentes -> {
+                    // Actualiza solo el campo 'cantidad'
+                    puntosExistentes.setCantidad(puntosDetails.getCantidad());
+                    // Guarda y devuelve el objeto actualizado
+                    return puntosRepository.save(puntosExistentes);
+                });
+    }
 }

@@ -16,7 +16,7 @@ public class DetalleCompraController {
     @Autowired
     private DetalleCompraService detallesCompraService;
 
-    // --- ENDPOINTS DE ESCRITURA ---
+
 
     @PostMapping
     public ResponseEntity<DetalleCompra> crearDetalle(@RequestBody DetalleCompra detallesCompra) {

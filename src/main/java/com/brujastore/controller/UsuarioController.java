@@ -32,9 +32,9 @@ public class UsuarioController {
 
     @PostMapping
     public ResponseEntity<Usuario> crearUsuario(@RequestBody Usuario usuario) {
-        // Validación básica: verificar si el correo ya existe
+
         if (usuarioService.findByCorreo(usuario.getCorreo()).isPresent()) {
-            return new ResponseEntity<>(HttpStatus.CONFLICT); // 409 Conflict
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
         Usuario nuevoUsuario = usuarioService.save(usuario);
         return new ResponseEntity<>(nuevoUsuario, HttpStatus.CREATED);

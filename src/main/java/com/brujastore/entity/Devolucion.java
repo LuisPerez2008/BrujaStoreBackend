@@ -26,7 +26,7 @@ public class Devolucion {
     private DetalleCompra detalleCompra;
 
     // El usuario que solicita la devolución
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", nullable = false)
     private Usuario usuario;
 

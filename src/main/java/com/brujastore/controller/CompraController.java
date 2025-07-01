@@ -16,7 +16,11 @@ public class CompraController {
     @Autowired
     private CompraService compraService;
 
-
+    @GetMapping
+    public ResponseEntity<List<Compra>> listarTodasLasCompras() {
+        List<Compra> compras = compraService.findAll();
+        return ResponseEntity.ok(compras);
+    }
     @PostMapping
     public ResponseEntity<Compra> crearCompra(@RequestBody Compra compra) {
         try {

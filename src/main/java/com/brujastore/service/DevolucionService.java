@@ -64,4 +64,19 @@ public class DevolucionService {
     public List<Devolucion> findByEstado(String estado) {
         return devolucionRepository.findByEstadoOrderByFechaSolicitudAsc(estado);
     }
+
+    @Transactional
+    public Optional<Devolucion> actualizarEstado(Long id, String nuevoEstado) {
+        return devolucionRepository.findById(id)
+                .map(devolucionExistente -> {
+                    devolucionExistente.setEstado(nuevoEstado);
+
+                    // Lógica para cerrar la devolución si el estado es final
+                    if ("COMPLETADA".equalsIgnoreCase(nuevoEstado) || "RECHAZADA".equalsIgnoreCase(nuevoEstado)) {
+                        devolucionExistente.setFechaCierre(LocalDateTime.now());
+                    }
+
+                    return devolucionRepository.save(devolucionExistente);
+                });
+    }
 }

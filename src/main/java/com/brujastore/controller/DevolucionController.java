@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/devoluciones")
@@ -72,5 +73,19 @@ public class DevolucionController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PatchMapping("/{id}/estado")
+    public ResponseEntity<Devolucion> actualizarEstadoDevolucion(@PathVariable Long id, @RequestBody Map<String, String> updates) {
+        // Obtenemos el nuevo estado del cuerpo del JSON
+        String nuevoEstado = updates.get("estado");
+
+        if (nuevoEstado == null) {
+            return ResponseEntity.badRequest().build(); // Devuelve error si el JSON no tiene el campo 'estado'
+        }
+
+        return devolucionService.actualizarEstado(id, nuevoEstado)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.notFound().build());
     }
 }
