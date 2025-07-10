@@ -33,7 +33,7 @@ public class UsuarioService {
     }
 
     public Usuario save(Usuario usuario) {
-        // Codifica la contraseña siempre que se guarda/actualiza
+
         usuario.setContra(passwordEncoder.encode(usuario.getContra()));
         return usuarioRepository.save(usuario);
     }

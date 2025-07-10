@@ -21,10 +21,7 @@ public class PromocionController {
         return ResponseEntity.ok(promocionService.findAll());
     }
 
-    /**
-     * Endpoint para obtener solo las promociones válidas para usar hoy.
-     *para mostrar al cliente las ofertas disponibles.
-     */
+
     @GetMapping("/activas")
     public ResponseEntity<List<Promocion>> listarPromocionesActivas() {
         return ResponseEntity.ok(promocionService.findPromocionesActivasHoy());
@@ -45,7 +42,7 @@ public class PromocionController {
     public ResponseEntity<Promocion> getPromocionPorCodigo(@PathVariable String codigo) {
         return promocionService.findByCodigo(codigo)
                 .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+                .orElse(ResponseEntity.ok().build());
     }
 
     @PostMapping

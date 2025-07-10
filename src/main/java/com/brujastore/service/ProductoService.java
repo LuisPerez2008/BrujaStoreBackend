@@ -3,6 +3,8 @@ package com.brujastore.service;
 import com.brujastore.entity.Producto;
 import com.brujastore.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
@@ -76,5 +78,10 @@ public class ProductoService {
     public List<Producto> findProductosActivos() {
         // Llama al método del repositorio pasándole "true" como parámetro.
         return productoRepository.findByEstado(true);
+    }
+
+    @Transactional(readOnly = true)
+    public Page<Producto> findAllPaginated(Pageable pageable) {
+        return productoRepository.findAll(pageable);
     }
 }

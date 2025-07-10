@@ -28,7 +28,7 @@ public class CategoriaService {
 
     @Transactional
     public Categoria save(Categoria categoria) {
-        // Validamos que no exista otra categoría con el mismo nombre
+
         categoriaRepository.findByNombreIgnoreCase(categoria.getNombre()).ifPresent(c -> {
             throw new IllegalStateException("Ya existe una categoría con el nombre: " + categoria.getNombre());
         });
