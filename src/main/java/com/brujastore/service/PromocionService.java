@@ -1,5 +1,6 @@
 package com.brujastore.service;
 
+import com.brujastore.entity.Producto;
 import com.brujastore.entity.Promocion;
 import com.brujastore.repository.PromocionRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -63,4 +64,14 @@ public class PromocionService {
                     return promocionRepository.save(promocionExistente);
                 });
     }
+
+    @Transactional
+    public Optional<Promocion> actualizarEstado(Long id, boolean nuevoEstado) {
+        return promocionRepository.findById(id)
+                .map(promocionExistente -> {
+                    promocionExistente.setEstado(nuevoEstado);
+                    return promocionRepository.save(promocionExistente);
+                });
+    }
+
 }

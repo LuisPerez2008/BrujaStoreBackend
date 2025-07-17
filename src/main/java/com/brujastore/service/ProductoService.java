@@ -1,9 +1,11 @@
 package com.brujastore.service;
 
 import com.brujastore.entity.Producto;
+import com.brujastore.repository.DetalleCompraRepository;
 import com.brujastore.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,6 +20,8 @@ public class ProductoService {
 
     @Autowired
     private ProductoRepository productoRepository;
+
+
 
     @Transactional
     public Producto save(Producto producto, MultipartFile archivoImagen) throws IOException {
@@ -84,4 +88,18 @@ public class ProductoService {
     public Page<Producto> findAllPaginated(Pageable pageable) {
         return productoRepository.findAll(pageable);
     }
+
+
+    @Transactional
+    public Optional<Producto> actualizarEstado(Long id, boolean nuevoEstado) {
+        return productoRepository.findById(id)
+                .map(prodcutoExistente -> {
+                    prodcutoExistente.setEstado(nuevoEstado);
+                    return productoRepository.save(prodcutoExistente);
+                });
+    }
+
+
+
+
 }

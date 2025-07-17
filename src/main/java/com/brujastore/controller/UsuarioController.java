@@ -22,6 +22,11 @@ public class UsuarioController {
     public ResponseEntity<List<Usuario>> listarUsuarios() {
         return new ResponseEntity<>(usuarioService.findAll(), HttpStatus.OK);
     }
+    @GetMapping("/rol/{rolId}")
+    public ResponseEntity<List<Usuario>> listarUsuariosPorRol(@PathVariable Long rolId) {
+        List<Usuario> usuarios = usuarioService.findByRolId(rolId);
+        return ResponseEntity.ok(usuarios);
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Usuario> obtenerUsuarioPorId(@PathVariable Long id) {

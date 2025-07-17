@@ -21,6 +21,10 @@ public class DetalleCompraService {
         return detallesCompraRepository.save(detallesCompra);
     }
 
+    @Transactional(readOnly = true)
+    public List<DetalleCompra> findAll() {
+        return detallesCompraRepository.findAll();
+    }
     @Transactional
     public Optional<DetalleCompra> update(Long id, DetalleCompra detalleDetails) {
         return detallesCompraRepository.findById(id)

@@ -8,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/promociones")
@@ -69,5 +70,16 @@ public class PromocionController {
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PatchMapping("/{id}/cambiarestado")
+    public ResponseEntity<Promocion> cambiarestado(@PathVariable Long id ,  @RequestBody Map<String, Boolean> updates) {
+        Boolean nuevoEstado = updates.get("estado");
+
+        if (nuevoEstado == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return promocionService.actualizarEstado(id, nuevoEstado).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }

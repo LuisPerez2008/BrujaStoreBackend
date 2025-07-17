@@ -1,5 +1,6 @@
 package com.brujastore.controller;
 
+import com.brujastore.dto.ReporteVentasDTO;
 import com.brujastore.entity.Compra;
 import com.brujastore.service.CompraService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,20 @@ public class CompraController {
         return compraService.update(id, compraDetails)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+
+
+
+    //endponits para datos del dashboard
+    @GetMapping("/stats/ventas-diarias")
+    public ResponseEntity<List<ReporteVentasDTO>> getVentasDiarias() {
+        return ResponseEntity.ok(compraService.getVentasDiariasUltimoMes());
+    }
+
+
+    @GetMapping("/stats/ventas-mensuales")
+    public ResponseEntity<List<ReporteVentasDTO>> getVentasMensuales() {
+        return ResponseEntity.ok(compraService.getVentasMensualesUltimoAno());
     }
 }

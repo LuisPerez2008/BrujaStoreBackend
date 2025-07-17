@@ -5,6 +5,7 @@ import com.brujastore.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -40,6 +41,11 @@ public class UsuarioService {
 
     public void deleteById(Long id) {
         usuarioRepository.deleteById(id);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Usuario> findByRolId(Long rolId) {
+        return usuarioRepository.findByRolId(rolId);
     }
 
     // ---  MÉTODO PARA LOGIN ---

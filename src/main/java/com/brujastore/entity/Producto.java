@@ -27,6 +27,9 @@ public class Producto {
     @Column(name = "caracteristicas", length = 1000)
     private String caracteristicas;
 
+    @Column(name = "marca", length = 255)
+    private String marca;
+
 
     @Lob
     @Basic(fetch = FetchType.LAZY)

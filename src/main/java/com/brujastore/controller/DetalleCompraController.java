@@ -18,6 +18,11 @@ public class DetalleCompraController {
 
 
 
+    @GetMapping
+    public ResponseEntity<List<DetalleCompra>> listarTodosLosDetalles() {
+        List<DetalleCompra> todosLosDetalles = detallesCompraService.findAll();
+        return ResponseEntity.ok(todosLosDetalles);
+    }
     @PostMapping
     public ResponseEntity<DetalleCompra> crearDetalle(@RequestBody DetalleCompra detallesCompra) {
         try {

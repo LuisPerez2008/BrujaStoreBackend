@@ -25,7 +25,7 @@ public class Compra {
     private Usuario usuario;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "direccion_id")
+    @JoinColumn(name = "direccion_id", nullable = false)
     private Direccion direccion;
 
 

@@ -1,11 +1,15 @@
 package com.brujastore.service;
 
+import com.brujastore.dto.ReporteVentasDTO;
 import com.brujastore.entity.Compra;
 import com.brujastore.repository.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDateTime;
+import java.time.temporal.TemporalAdjusters;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -54,5 +58,41 @@ public class CompraService {
                     compraExistente.setEstado(compraDetails.getEstado());
                     return compraRepository.save(compraExistente);
                 });
+    }
+
+    @Transactional(readOnly = true)
+    public List<ReporteVentasDTO> getVentasDiariasUltimoMes() {
+        LocalDateTime fechaFin = LocalDateTime.now();
+        LocalDateTime fechaInicio = fechaFin.minusDays(30);
+        return compraRepository.findVentasDiarias(fechaInicio, fechaFin);
+    }
+
+
+    @Transactional(readOnly = true)
+    public List<ReporteVentasDTO> getVentasMensualesUltimoAno() {
+        LocalDateTime fechaFin = LocalDateTime.now();
+        LocalDateTime fechaInicio = fechaFin.minusYears(1).with(TemporalAdjusters.firstDayOfMonth());
+
+        // 1. Obtenemos la lista de arrays de objetos del repositorio
+        List<Object[]> resultados = compraRepository.findVentasMensuales(fechaInicio, fechaFin);
+
+        // 2. Creamos la lista que vamos a devolver
+        List<ReporteVentasDTO> reporte = new ArrayList<>();
+
+        // 3. Recorremos los resultados y los convertimos a DTOs
+        for (Object[] resultado : resultados) {
+            Integer anio = (Integer) resultado[0];
+            Integer mes = (Integer) resultado[1];
+            Double totalVentas = (Double) resultado[2];
+
+            // Formateamos el mes para que tenga un cero si es necesario (ej. 7 -> "07")
+            String mesFormateado = String.format("%02d", mes);
+            String periodo = anio + "-" + mesFormateado;
+
+            // Creamos el DTO y lo añadimos a la lista
+            reporte.add(new ReporteVentasDTO(periodo, totalVentas));
+        }
+
+        return reporte;
     }
 }

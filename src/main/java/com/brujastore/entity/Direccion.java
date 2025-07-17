@@ -41,6 +41,5 @@ public class Direccion {
     // Relación: Muchas direcciones pertenecen a un Usuario.
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "usuario_id", nullable = false)
-    @JsonIgnore
     private Usuario usuario;
 }
