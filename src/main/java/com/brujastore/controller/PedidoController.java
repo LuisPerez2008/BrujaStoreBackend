@@ -1,6 +1,7 @@
 package com.brujastore.controller;
 
 import com.brujastore.entity.Pedido;
+import com.brujastore.entity.Producto;
 import com.brujastore.service.PedidoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -8,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/pedidos")
@@ -48,4 +50,6 @@ public class PedidoController {
             return ResponseEntity.notFound().build();
         }
     }
+
+
 }

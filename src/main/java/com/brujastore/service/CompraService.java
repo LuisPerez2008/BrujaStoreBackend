@@ -2,6 +2,7 @@ package com.brujastore.service;
 
 import com.brujastore.dto.ReporteVentasDTO;
 import com.brujastore.entity.Compra;
+import com.brujastore.entity.Pedido;
 import com.brujastore.repository.CompraRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,6 +57,16 @@ public class CompraService {
                     compraExistente.setPromocion(compraDetails.getPromocion());
                     compraExistente.setPrecioFinal(compraDetails.getPrecioFinal());
                     compraExistente.setEstado(compraDetails.getEstado());
+                    return compraRepository.save(compraExistente);
+                });
+    }
+
+
+    @Transactional
+    public Optional<Compra> actualizarEstado(Long id, String nuevoEstado) {
+        return compraRepository.findById(id)
+                .map(compraExistente -> {
+                    compraExistente.setEstado(nuevoEstado);
                     return compraRepository.save(compraExistente);
                 });
     }

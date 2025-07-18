@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/compras")
@@ -67,5 +68,17 @@ public class CompraController {
     @GetMapping("/stats/ventas-mensuales")
     public ResponseEntity<List<ReporteVentasDTO>> getVentasMensuales() {
         return ResponseEntity.ok(compraService.getVentasMensualesUltimoAno());
+    }
+
+    @PatchMapping("/{id}/estado")
+    public ResponseEntity<Compra> cambiarEstado(@PathVariable Long id, @RequestBody Map<String, String> updates){
+
+        String nuevoEstado = updates.get("estado");
+
+        if (nuevoEstado == null) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        return compraService.actualizarEstado(id, nuevoEstado).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 }
