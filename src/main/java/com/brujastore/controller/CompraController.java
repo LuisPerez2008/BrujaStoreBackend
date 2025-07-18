@@ -29,6 +29,7 @@ public class CompraController {
             Compra nuevaCompra = compraService.save(compra);
             return new ResponseEntity<>(nuevaCompra, HttpStatus.CREATED);
         } catch (Exception e) {
+            e.printStackTrace(); // 🔥 Esto mostrará el error real en la consola
             return ResponseEntity.badRequest().build();
         }
     }
@@ -69,6 +70,7 @@ public class CompraController {
     public ResponseEntity<List<ReporteVentasDTO>> getVentasMensuales() {
         return ResponseEntity.ok(compraService.getVentasMensualesUltimoAno());
     }
+
 
     @PatchMapping("/{id}/estado")
     public ResponseEntity<Compra> cambiarEstado(@PathVariable Long id, @RequestBody Map<String, String> updates){
