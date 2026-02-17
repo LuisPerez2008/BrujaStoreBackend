@@ -1,0 +1,237 @@
+# 🛍️ BrujaStore Backend
+
+Backend de la plataforma de e-commerce **BrujaStore** - Una solución completa para la gestión de tienda en línea con funcionalidades avanzadas de compras, pedidos, devoluciones y sistema de puntos de fidelización.
+
+## 📋 Descripción del Proyecto
+
+BrujaStore es un sistema backend robusto construido con **Spring Boot 3** que proporciona todas las funcionalidades necesarias para administrar una tienda online moderna. La aplicación incluye gestión de productos, categorías, usuarios, pedidos, compras, devoluciones, promociones y un sistema integral de puntos de recompensa.
+
+## 🚀 Requisitos Previos
+
+Antes de iniciar, asegúrate de tener instalado:
+
+- **Java 21** o superior
+- **Maven 3.6+**
+- **PostgreSQL 12+**
+- **Git**
+
+## 🔧 Configuración e Instalación
+
+### 1. Clonar el repositorio
+
+```bash
+git clone <tu-repositorio-url>
+cd BrujaStoreBackend
+```
+
+### 2. Configurar la base de datos
+
+Crea una base de datos PostgreSQL para el proyecto:
+
+```sql
+CREATE DATABASE brujastore;
+```
+
+### 3. Configurar variables de entorno
+
+Edita el archivo `src/main/resources/application.properties` con tus credenciales:
+
+```properties
+# Database Configuration
+spring.datasource.url=jdbc:postgresql://localhost:5432/brujastore
+spring.datasource.username=tu_usuario
+spring.datasource.password=tu_contraseña
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=false
+
+# Server Configuration
+server.port=8080
+
+# Mail Configuration (opcional)
+spring.mail.host=tu_host_smtp
+spring.mail.port=587
+spring.mail.username=tu_email
+spring.mail.password=tu_contraseña
+```
+
+### 4. Instalar dependencias
+
+```bash
+./mvnw clean install
+```
+
+### 5. Ejecutar la aplicación
+
+```bash
+./mvnw spring-boot:run
+```
+
+La aplicación estará disponible en `http://localhost:8080`
+
+## 📁 Estructura del Proyecto
+
+```
+src/
+├── main/
+│   ├── java/com/brujastore/
+│   │   ├── BrujastoreApplication.java       # Clase principal
+│   │   ├── config/                          # Configuraciones
+│   │   │   ├── SecurityConfig.java          # Configuración de seguridad
+│   │   │   └── WebConfig.java               # Configuración web
+│   │   ├── controller/                      # Controladores REST
+│   │   ├── dto/                             # Data Transfer Objects
+│   │   ├── entity/                          # Entidades JPA
+│   │   ├── repository/                      # Acceso a datos
+│   │   └── service/                         # Lógica de negocio
+│   └── resources/
+│       └── application.properties            # Configuración
+└── test/                                     # Pruebas unitarias
+```
+
+## 🎯 Características Principales
+
+### 👥 Gestión de Usuarios
+
+- Registro y autenticación de usuarios
+- Perfiles de usuario con roles
+- Sistema de direcciones múltiples por usuario
+
+### 🛒 Catálogo de Productos
+
+- Gestión de categorías de productos
+- Catálogo completo de productos
+- Control de proveedores y relaciones con productos
+- Gestión de promociones
+
+### 📦 Pedidos y Compras
+
+- Sistema integral de pedidos
+- Registro detallado de compras
+- Gestión de líneas de detalle en pedidos y compras
+- Sistema de devoluciones
+
+### 🎁 Sistema de Puntos
+
+- Acumulación de puntos por compras
+- Canje de puntos como descuentos
+- Historial de puntos por usuario
+
+### 🔄 Devoluciones
+
+- Gestión de devoluciones de productos
+- Seguimiento del estado de devoluciones
+- Reembolsos automáticos
+
+## 📡 API Endpoints Principales
+
+### Usuarios
+
+- `POST /api/usuarios/register` - Registrar nuevo usuario
+- `POST /api/usuarios/login` - Iniciar sesión
+- `GET /api/usuarios` - Obtener lista de usuarios
+- `GET /api/usuarios/{id}` - Obtener detalles del usuario
+
+### Productos
+
+- `GET /api/productos` - Listar productos
+- `GET /api/productos/{id}` - Obtener detalles del producto
+- `POST /api/productos` - Crear producto (admin)
+- `PUT /api/productos/{id}` - Actualizar producto (admin)
+
+### Pedidos
+
+- `GET /api/pedidos` - Listar pedidos del usuario
+- `POST /api/pedidos` - Crear nuevo pedido
+- `GET /api/pedidos/{id}` - Obtener detalles del pedido
+
+### Compras
+
+- `GET /api/compras` - Listar compras
+- `POST /api/compras` - Registrar compra
+- `GET /api/compras/{id}` - Obtener detalles de compra
+
+### Devoluciones
+
+- `POST /api/devoluciones` - Crear devolución
+- `GET /api/devoluciones` - Listar devoluciones
+- `PUT /api/devoluciones/{id}` - Actualizar estado de devolución
+
+### Puntos
+
+- `GET /api/puntos/{usuarioId}` - Consultar puntos del usuario
+- `POST /api/puntos/canjear` - Canjear puntos
+
+## 🔐 Seguridad
+
+El proyecto implementa:
+
+- **Spring Security** para autenticación y autorización
+- **Control de roles** (Admin, Usuario, etc.)
+- **Validación de datos** en peticiones
+- **Protección CSRF** en configuraciones
+
+## 📦 Dependencias Principales
+
+- **Spring Boot 3.5.3** - Framework principal
+- **Spring Data JPA** - ORM y acceso a datos
+- **Spring Security** - Seguridad y autenticación
+- **PostgreSQL** - Base de datos
+- **Lombok** - Reducción de boilerplate
+- **Spring Mail** - Envío de correos
+
+## 🧪 Pruebas
+
+Para ejecutar las pruebas unitarias:
+
+```bash
+./mvnw test
+```
+
+## 🏗️ Build
+
+Para crear un JAR compilado listo para producción:
+
+```bash
+./mvnw clean package
+```
+
+El archivo JAR estará en `target/brujastore-0.0.1-SNAPSHOT.jar`
+
+## 📝 Variables de Entorno Recomendadas
+
+Create un archivo `.env` (no incluir en versionamiento):
+
+```
+DB_URL=jdbc:postgresql://localhost:5432/brujastore
+DB_USERNAME=postgres
+DB_PASSWORD=tu_contraseña
+SERVER_PORT=8080
+SPRING_PROFILE=dev
+```
+
+## 🤝 Contribución
+
+Para contribuir al proyecto:
+
+1. Fork el repositorio
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
+
+## 🗄️ Diagrama de Base de Datos
+
+![Diagrama entidad-relación BrujaStore](docs/BRUJASTORE.png)
+
+## 📜 Licencia
+
+Este proyecto está bajo la Licencia MIT.
+
+## 📞 Contacto y Soporte
+
+Para reportar problemas o sugerencias, por favor abre un **Issue** en el repositorio.
+
+---
+
+**Última actualización:** Febrero 2026  
+**Versión:** 0.0.1-SNAPSHOT
