@@ -179,12 +179,7 @@ El proyecto implementa:
 - **Lombok** - Reducción de boilerplate
 - **Spring Mail** - Envío de correos
 
-## 🧪 Pruebas
-
-Para ejecutar las pruebas unitarias:
-
-```bash
-./mvnw test
+nw test
 ```
 
 ## 🏗️ Build
@@ -209,16 +204,6 @@ SERVER_PORT=8080
 SPRING_PROFILE=dev
 ```
 
-## 🤝 Contribución
-
-Para contribuir al proyecto:
-
-1. Fork el repositorio
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
 ## 🗄️ Diagrama de Base de Datos
 
 ![Diagrama entidad-relación BrujaStore](docs/BRUJASTORE.png)
@@ -226,10 +211,6 @@ Para contribuir al proyecto:
 ## 📜 Licencia
 
 Este proyecto está bajo la Licencia MIT.
-
-## 📞 Contacto y Soporte
-
-Para reportar problemas o sugerencias, por favor abre un **Issue** en el repositorio.
 
 ---
 
