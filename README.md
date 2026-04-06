@@ -182,8 +182,6 @@ El proyecto implementa:
 - **Lombok** - Reducción de boilerplate
 - **Spring Mail** - Envío de correos
 
-nw test
-```
 
 
 
@@ -191,5 +189,4 @@ nw test
 
 ![Diagrama entidad-relación BrujaStore](docs/BRUJASTORE.png)
 
-![Diagrama](https://raw.githubusercontent.com/LuisPerez2008/BrujaStoreBackend/main/docs/BRUJASTORE.png)
 **Versión:** 0.0.1-SNAPSHOT
