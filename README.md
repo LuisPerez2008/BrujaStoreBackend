@@ -182,27 +182,7 @@ El proyecto implementa:
 nw test
 ```
 
-## 🏗️ Build
 
-Para crear un JAR compilado listo para producción:
-
-```bash
-./mvnw clean package
-```
-
-El archivo JAR estará en `target/brujastore-0.0.1-SNAPSHOT.jar`
-
-## 📝 Variables de Entorno Recomendadas
-
-Create un archivo `.env` (no incluir en versionamiento):
-
-```
-DB_URL=jdbc:postgresql://localhost:5432/brujastore
-DB_USERNAME=postgres
-DB_PASSWORD=tu_contraseña
-SERVER_PORT=8080
-SPRING_PROFILE=dev
-```
 
 ## 🗄️ Diagrama de Base de Datos
 
