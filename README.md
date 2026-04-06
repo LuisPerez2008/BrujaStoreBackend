@@ -124,6 +124,9 @@ src/
 
 ## 📡 API Endpoints Principales
 
+### Documentacion postman 
+https://speeding-water-204458.postman.co/workspace/Personal-Workspace~c06dd41a-a64e-4858-b5bf-2908c8a07c3d/collection/33347468-df290367-423a-4b18-bc62-aa360ce13b24?action=share&source=copy-link&creator=33347468
+
 ### Usuarios
 
 - `POST /api/usuarios/register` - Registrar nuevo usuario
@@ -188,11 +191,5 @@ nw test
 
 ![Diagrama entidad-relación BrujaStore](docs/BRUJASTORE.png)
 
-## 📜 Licencia
-
-Este proyecto está bajo la Licencia MIT.
-
----
-
-**Última actualización:** Febrero 2026  
+![Diagrama](https://raw.githubusercontent.com/LuisPerez2008/BrujaStoreBackend/main/docs/BRUJASTORE.png)
 **Versión:** 0.0.1-SNAPSHOT
